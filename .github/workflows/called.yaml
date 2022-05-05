@@ -1,0 +1,13 @@
+name: Called Workflow
+on:
+  workflow_call:
+    inputs:
+      greeting:
+        required: true
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ inputs.greeting }}
