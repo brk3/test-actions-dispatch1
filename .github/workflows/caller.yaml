@@ -2,6 +2,4 @@ name: Caller Workflow
 on: [workflow_dispatch]
 jobs:
   test:
-    uses: ./.github/workflows/called.yaml
-    with:
-      greeting: hi
+    uses: ./.github/workflows/called2.yaml
