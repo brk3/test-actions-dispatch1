@@ -12,5 +12,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: my-artifact
     - run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
