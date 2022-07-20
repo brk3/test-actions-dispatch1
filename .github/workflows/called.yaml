@@ -7,14 +7,16 @@ on:
         type: string
 
 jobs:
-  test1:
-    runs-on: ubuntu-latest
-    steps:
-    - run: echo ${{ inputs.greeting }}
+  #test1:
+    #runs-on: ubuntu-latest
+    #steps:
+    #- run: echo ${{ inputs.greeting }}
 
   test2:
     runs-on: ubuntu-latest
-    environment: env1
+    container:
+      image: aztfmod/rover:1.1.6-2202.2503
+      options: --user 0:0
     steps:
     - uses: actions/checkout@v3
     - uses: ./.github/actions/test

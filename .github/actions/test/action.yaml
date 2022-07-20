@@ -12,8 +12,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/download-artifact@v3
-      with:
-        name: my-artifact
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo "hello world"
       shell: bash
+
+    #- name: "Test docker step"
+      #uses: "docker://aztfmod/rover:1.1.6-2202.2503"
+      #with:
+        #entrypoint: "/tf/rover/rover.sh"
+        #args: "-h"
