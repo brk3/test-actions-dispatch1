@@ -18,8 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello job2
+		needs: [job1]
 
   job3:
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello job3
+		needs: [job2]
