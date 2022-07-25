@@ -2,11 +2,11 @@ name: deps
 
 on:
   workflow_dispatch:
-
-inputs:
-  jobstorun:
-    required: true
-    default: 'job1, job2, job3'
+	inputs:
+		jobstorun:
+			required: true
+			type: string
+			default: 'job1, job2, job3'
 
 jobs:
   job1:
