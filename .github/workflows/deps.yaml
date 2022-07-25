@@ -1,0 +1,25 @@
+name: deps
+
+on:
+  workflow_dispatch:
+
+inputs:
+  jobstorun:
+    required: true
+    default: 'job1, job2, job3'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello job1
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello job2
+
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello job3
