@@ -10,17 +10,20 @@ on:
 
 jobs:
   job1:
+    if: "${{ contains(inputs.jobstorun, 'job1') && !failure() }}"
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello job1
 
   job2:
+    if: "${{ contains(inputs.jobstorun, 'job2') && !failure() }}"
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello job2
     needs: [job1]
 
   job3:
+    if: "${{ contains(inputs.jobstorun, 'job3') && !failure() }}"
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello job3
