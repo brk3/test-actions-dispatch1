@@ -1,30 +1,11 @@
-name: deps
+name: test
 
 on:
-  workflow_dispatch:
-    inputs:
-      jobstorun:
-        required: true
-        type: string
-        default: 'job1, job2, job3'
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   job1:
-    if: "${{ contains(inputs.jobstorun, 'job1') && !failure() }}"
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello job1
-
-  job2:
-    if: "${{ contains(inputs.jobstorun, 'job2') && !failure() }}"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Hello job2
-    needs: [job1]
-
-  job3:
-    if: "${{ contains(inputs.jobstorun, 'job3') && !failure() }}"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Hello job3
-    needs: [job2]
+      - run: echo Hello World
