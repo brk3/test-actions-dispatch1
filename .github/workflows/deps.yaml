@@ -3,9 +3,12 @@ name: test
 on:
   pull_request:
     branches: main
+  push:
+  workflow_dispatch:
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello World
+      - run: echo ${{ github.event }}
+      - run: echo ${{ github.event.* }}
