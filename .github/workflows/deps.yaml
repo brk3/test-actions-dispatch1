@@ -11,11 +11,11 @@ jobs:
   plan:
     runs-on: [ubuntu]
     steps:
-      run: echo plan
+      - run: echo plan
 
   apply:
     runs-on: [ubuntu]
     if: "${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}"
     needs: [plan]
     steps:
-      run: echo apply
+      - run: echo apply
