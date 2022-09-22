@@ -4,8 +4,18 @@ on:
   pull_request:
     branches: main
   push:
+    branches: main
   workflow_dispatch:
 
 jobs:
-  job1:
-    uses: "./.github/workflows/deps2.yaml"
+  plan:
+    runs-on: [ubuntu]
+    steps:
+      run: echo plan
+
+  apply:
+    runs-on: [ubuntu]
+    if: "${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}"
+    needs: [plan]
+    steps:
+      run: echo apply
