@@ -12,11 +12,12 @@ jobs:
           echo "::set-output name=needsapproval::false"
 
   needs_approval:
-    if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true'"
+    #if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true'"
     runs-on:
       - ubuntu-latest
     steps:
       - run: |
+          echo "${{ needs.job1.outputs.needsapproval }}"
           echo "XXX1"
     needs: ["job1"]
 
