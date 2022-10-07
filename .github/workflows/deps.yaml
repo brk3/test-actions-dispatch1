@@ -2,8 +2,27 @@ name: 'test'
 "on":
   workflow_dispatch: {}
 jobs:
-  todo:
+  job1:
     runs-on:
       - ubuntu-latest
     steps:
-      - run: echo todo
+      - run: |
+          echo "::set-output name=needsapproval::false"
+
+  needs_approval:
+		if: "${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true' }}"
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - run: |
+          echo "XXX1"
+    needs: ["job1"]
+
+  skip_approval:
+		if: "${{ (github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'false' }}"
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - run: |
+          echo "XXX2"
+    needs: ["job1"]
