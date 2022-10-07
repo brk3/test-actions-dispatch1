@@ -3,23 +3,21 @@ name: 'test'
   workflow_dispatch: {}
   push:
     branches: ["main"]
+
 jobs:
   job1:
     outputs:
-      needsapproval: ${{ steps.run.outputs.needsapproval }}
-    runs-on:
-      - ubuntu-latest
+      needsapproval: ${{ steps.step1.outputs.needsapproval }}
+    runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "::set-output name=needsapproval::false"
+      - id: step1
+        run: echo "::set-output name=needsapproval::false"
 
   needs_approval:
-    #if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true'"
-    runs-on:
-      - ubuntu-latest
+    if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true'"
+    runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "${{ needs.job1.outputs.needsapproval }}"
           echo "XXX1"
     needs: ["job1"]
 
