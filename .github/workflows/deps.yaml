@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: step1
-        run: echo "::set-output name=needsapproval::false"
+        run: echo "::set-output name=needsapproval::true"
 
   needs_approval:
     if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true'"
@@ -23,8 +23,7 @@ jobs:
 
   skip_approval:
     if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'false'"
-    runs-on:
-      - ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "XXX2"
