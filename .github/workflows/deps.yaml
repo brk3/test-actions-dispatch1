@@ -1,30 +1,8 @@
 name: 'test'
 "on":
   workflow_dispatch: {}
-  push:
-    branches: ["main"]
-
 jobs:
   job1:
-    outputs:
-      needsapproval: ${{ steps.step1.outputs.needsapproval }}
     runs-on: ubuntu-latest
     steps:
-      - id: step1
-        run: echo "::set-output name=needsapproval::true"
-
-  needs_approval:
-    if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'true'"
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "XXX1"
-    needs: ["job1"]
-
-  skip_approval:
-    if: "(github.event_name == 'workflow_dispatch' || github.event_name == 'push') && needs.job1.outputs.needsapproval == 'false'"
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "XXX2"
-    needs: ["job1"]
+      - run: echo "todo"
