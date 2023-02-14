@@ -4,5 +4,7 @@ name: 'test'
 jobs:
   job1:
     runs-on: ubuntu-latest
+    environment: env1
     steps:
-      - run: echo "todo"
+      - run: echo XXX1: ${{ secrets.ENV_SECRET }}
+      - run: echo XXX2: ${{ secrets.REPO_SECRET }}
